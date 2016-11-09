@@ -1,17 +1,19 @@
 puts 'Укажите первую сторону треугольника'
-a = gets.chomp.to_i
+a = gets.chomp.to_f
 
 puts 'Укажите вторую сторону треугольника'
-b = gets.chomp.to_i
+b = gets.chomp.to_f
 
 puts 'Укажите третью сторону треугольника'
-c = gets.chomp.to_i
+c = gets.chomp.to_f
 
-square_c = c**2
+square_a = a**2
+square_b = b**2
+hypotenuse = square_a + square_b
 
-if square_c == ((a**2) + (b**2))
+if hypotenuse == square_a + square_a
   puts 'Треугольник является прямоугольным'
-elsif square_c == ((a**2) + (b**2)) && (a == b || a == c || c == b)
+elsif hypotenuse == square_a + square_a && (a == b || a == c || c == b)
   puts 'Треугольник является прямоугольным и равнобедренным'
 elsif a == b && b == c
   puts 'Треугольник является равнобедренным и равносторонним'
