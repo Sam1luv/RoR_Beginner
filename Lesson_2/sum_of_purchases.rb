@@ -1,7 +1,7 @@
 product_list = {}
 loop do
   puts "Введите наименование товара"
-  product = gets.chomp.to_sym
+  product = gets.chomp
 
   break if product == 'стоп'
 
