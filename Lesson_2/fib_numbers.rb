@@ -1,14 +1,12 @@
 def fibonacci(n)
-  if n <= 2
-    1
-  else
-    fibonacci(n - 1) + fibonacci(n - 2)
-  end
+  n <= 2 ? 1 : fibonacci(n - 1) + fibonacci(n - 2)
 end
 
 fib_numbers = []
-(1..20).each do |n|
-  fib_numbers .push(fibonacci(n)) if fibonacci(n) < 100
+n = 0
+while n < 20 && fibonacci(n) < 100 do
+  fib_numbers  << fibonacci(n)
+  n +=1
 end
 
 puts fib_numbers.to_s

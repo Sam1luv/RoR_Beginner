@@ -1,17 +1,17 @@
 product_list = {}
 loop do
   puts "Введите наименование товара"
-  product = gets.chomp
+  product = gets.chomp.to_sym
 
   break if product == 'стоп'
 
   puts "Введите цену за единицу товара"
-  price = gets.chomp
+  price = gets.chomp.to_f
 
   puts "Введите количество товара"
-  number = gets.chomp
+  number = gets.chomp.to_f
 
-  product_list[product.to_sym] = {price: price.to_f, number: number.to_f}
+  product_list[product] = {price: price, number: number}
 end
 
 sum = 0

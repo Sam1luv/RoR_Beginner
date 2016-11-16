@@ -4,4 +4,4 @@ alphabet = {}
   alphabet[letter] = index + 1 if vowel.include?(letter)
 end
 
-alphabet.each { |key, value| puts "#{key} - #{value}"}
+p alphabet
