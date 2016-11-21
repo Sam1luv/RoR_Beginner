@@ -1,6 +1,6 @@
 class Train
   attr_writer :train_number, :type
-  attr_accessor :speed, :route_list, :carriage_amount, :station_index
+  attr_accessor :speed, :route :carriage_amount, :station_index
 
 
   def initialize(train_number, type, carriage_amount)
@@ -8,7 +8,7 @@ class Train
     @type = type
     @carriage_amount = carriage_amount
     @speed = speed
-    @route_list = route_list
+    @route = route
     @station_index = station_index
   end
 
@@ -29,15 +29,33 @@ def add_carriage
 end
 
 def remove_carriage
-  @carriage_amount -= 1 if speed  == 0
+  @carriage_amount -= 1 if speed  == 0 && @carriage_amount > 0
 end
 
-# Нужна помощь в решении следующих пунктов:
+def current_station
+  @station_index = 0
+  current_station = @route.route_list[@station_index]
+end
 
-#Может перемещаться между станциями, указанными в маршруте.
-#Показывать предыдущую станцию, текущую, следующую, на основе маршрута
+def next_station
+  if @station_index <  @route.route_list.count
+    next_station = @route.route_list[@station_index + 1]
+  else
+    self.brake
+end
 
+def prev_station
+  if @station_index > 0
+    prev_station = @route.route_list[@station_index - 1]
+  else
+    self.brake
+end
 
-def
+def move_between_station
+  if self.next_station
+    @station_index +=1
+    self.prev_station.send_train(self)
+    self.current_station.get_train(self)
+end
 
 end
