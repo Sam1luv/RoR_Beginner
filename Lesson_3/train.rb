@@ -52,10 +52,9 @@ class Train
   end
 
   def move_between_station
-    if next_station
-      @station_index += 1
-      prev_station.send_train(self)
-      current_station.get_train(self)
-    end
+    return if next_station
+    @station_index += 1
+    prev_station.send_train(self)
+    current_station.get_train(self)
   end
 end

@@ -4,9 +4,9 @@ end
 
 fib_numbers = []
 n = 0
-while n < 20 && fibonacci(n) < 100 do
-  fib_numbers  << fibonacci(n)
-  n +=1
+while n < 20 && fibonacci(n) < 100
+  fib_numbers << fibonacci(n)
+  n += 1
 end
 
 puts fib_numbers.to_s

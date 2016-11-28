@@ -1,21 +1,21 @@
 product_list = {}
 loop do
-  puts "Введите наименование товара"
+  puts 'Введите наименование товара'
   product = gets.chomp
 
   break if product == 'стоп'
 
-  puts "Введите цену за единицу товара"
+  puts 'Введите цену за единицу товара'
   price = gets.chomp.to_f
 
-  puts "Введите количество товара"
+  puts 'Введите количество товара'
   number = gets.chomp.to_f
 
-  product_list[product] = {price: price, number: number}
+  product_list[product] = { price: price, number: number }
 end
 
 sum = 0
-product_list.each do | key, value|
+product_list.each do |key, _value|
   product_sum = product_list[:price] * product_list[:number]
   puts "Сумма за товар : #{key} - #{product_sum}"
   sum += product_sum
