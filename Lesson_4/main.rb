@@ -8,6 +8,10 @@ require_relative 'route'
 require_relative 'station'
 
 class TrainProgram
+  def initialize
+    @station_list = []
+    @trains_list = []
+  end
   def main
     puts 'Вас приветствует система управления поездами и станциями'
     puts 'Выберите необходимый вариант меню'
@@ -32,7 +36,7 @@ class TrainProgram
       when 4
         remove_carriage
       when 5
-        move_train_to_station
+        move_between_station
       when 6
         route_list
       when 7
@@ -46,7 +50,6 @@ class TrainProgram
   private
 
   def create_new_station
-    @station_list = []
     puts 'Введите название станции:'
     station_name = gets.chomp
     if @station_list.include?(station_name)
@@ -58,7 +61,6 @@ class TrainProgram
   end
 
   def create_new_train
-    @trains_list = []
     puts 'Укажите необходимый типа поезда: пассажирский/грузовой'
     train_type = gets.chomp.downcase
     if train_type == 'пассажирский'
@@ -69,6 +71,7 @@ class TrainProgram
       puts 'Неверно указан типа поезда'
       create_new_train
     end
+    main
   end
 
   def add_carriage_by_type

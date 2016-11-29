@@ -28,7 +28,7 @@ class Train
   end
 
   def remove_carriage
-    if self.break && type == carriage.type
+    if self.break
       carriage_list.delete(carriage)
     else
       puts 'Тип вагона не совпадает с типом поезда'
