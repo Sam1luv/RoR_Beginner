@@ -8,12 +8,10 @@ require_relative 'route'
 require_relative 'station'
 
 class TrainProgram
-  attr_reader :station_list
   def initialize
     @station_list = []
     @trains_list = []
   end
-
   def main
     puts 'Вас приветствует система управления поездами и станциями'
     puts 'Выберите необходимый вариант меню'
