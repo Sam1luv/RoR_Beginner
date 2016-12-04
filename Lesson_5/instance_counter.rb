@@ -13,9 +13,6 @@ module InstanceCounter
 
   module InstanceMethods
     self.class.instances = 0
-    def initialize
-      self.class.instances += 1
-    end
 
     protected
 
