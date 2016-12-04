@@ -1,21 +1,26 @@
 module InstanceCounter
   def self.included(base)
     base.extend ClassMethods
-    base.include InstanceMethods
+    base.send :include, InstanceMethods
   end
+
   module ClassMethods
+    attr_accessor :instaces
     def instances
-      @@instances
+      @instances
     end
   end
+
   module InstanceMethods
-    @@instances = 0
+    self.class.instances = 0
     def initialize
-      @@instances += 1
+      self.class.instances += 1
     end
 
+    protected
+
     def register_instance
-      @@instances += 1
+      self.class.instances += 1
     end
   end
 end

@@ -16,6 +16,7 @@ class Train
   def self.find(train_number)
     @@train_list[train_number]
   end
+
   def break
     self.speed = 0
   end

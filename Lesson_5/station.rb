@@ -2,10 +2,11 @@ class Station
   attr_writer :name
   attr_accessor :train_list
 
-  @@station_list = []
+  @station_list = []
   def initialize(name)
     @name = name
     @train_list = []
+    @station_list << name
   end
 
   def self.all
