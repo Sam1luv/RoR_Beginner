@@ -2,11 +2,20 @@ class Station
   attr_writer :name
   attr_accessor :train_list
 
+  STATION_NAME_FORMAT = /^[a-zа-я0-9]$/i
+
   @station_list = []
   def initialize(name)
     @name = name
     @train_list = []
     @station_list << name
+    validate!
+  end
+
+  def validate?
+    validate!
+  rescue
+    false
   end
 
   def self.all
@@ -28,5 +37,13 @@ class Station
 
   def send_train(train)
     @train_list.delete(train) if @train_list.include?(train)
+  end
+
+  protected
+
+  def validate!
+    raise 'Название станции не указано' if name.nil?
+    raise 'Неверный формат названия станции' if name !~ STATION_NAME_FORMAT
+    true
   end
 end

@@ -12,6 +12,7 @@ class TrainProgram
     @station_list = []
     @trains_list = []
   end
+
   def main
     puts 'Вас приветствует система управления поездами и станциями'
     puts 'Выберите необходимый вариант меню'

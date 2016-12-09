@@ -2,16 +2,24 @@ class Train
   include Manufacturer
   attr_accessor :route, :carriage_list, :train_number
   attr_reader :speed, :type
+
   TRAIN_NUMBER_FORMAT = /^[a-zа-я0-9]{3}-?[a-zа-я0-9]{2}$/i
 
   @train_list = {}
-  def initialize(train_number)
+  def initialize(train_number, speed = 0)
     @train_number = train_number
     @speed = speed
     @route = route
     @station_index = 0
     @carriage_list = []
     @train_list[train_number] = self
+    validate!
+  end
+
+  def validate?
+    validate!
+  rescue
+    false
   end
 
   def self.find(train_number)
@@ -30,7 +38,7 @@ class Train
     if self.break && type == carriage.type
       carriage_list << carriage
     else
-      puts 'Тип вагона не совпадает с типом поезда'
+      false
     end
   end
 
@@ -38,7 +46,7 @@ class Train
     if self.break
       carriage_list.delete(carriage)
     else
-      puts 'Тип вагона не совпадает с типом поезда'
+      false
     end
   end
 
@@ -63,7 +71,15 @@ class Train
     current_station.get_train(self)
   end
 
-  private
+  protected
 
   attr_writer :speed
+
+  def validate!
+    raise 'Номер поезда не задан' if train_number.nil?
+    raise 'Номер поезда должен быть не меньше 5 символов' if train_number.length < 5
+    raise 'Неверно указан номер поезда' if train_number !~ TRAIN_NUMBER_FORMAT
+    raise 'Неверено указана скорость' if speed < 0
+    true
+  end
 end
