@@ -8,8 +8,8 @@ class Station
   def initialize(name)
     @name = name
     @train_list = []
-    @station_list << name
     validate!
+    @station_list << self
   end
 
   def validate?

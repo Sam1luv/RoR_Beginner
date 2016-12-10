@@ -5,15 +5,15 @@ class Train
 
   TRAIN_NUMBER_FORMAT = /^[a-zа-я0-9]{3}-?[a-zа-я0-9]{2}$/i
 
-  @train_list = {}
+  @@train_list = {}
   def initialize(train_number, speed = 0)
     @train_number = train_number
     @speed = speed
     @route = route
     @station_index = 0
     @carriage_list = []
-    @train_list[train_number] = self
     validate!
+    @@train_list[train_number] = self
   end
 
   def validate?
