@@ -62,15 +62,21 @@ class TrainProgram
   end
 
   def create_new_train
-    puts 'Укажите необходимый типа поезда: пассажирский/грузовой'
-    train_type = gets.chomp.downcase
-    if train_type == 'пассажирский'
-      @trains_list << CargoTrain.new(train_number)
-    elsif train_type == 'грузовой'
-      @trains_list << PassengerTrain.new(train_number)
-    else
-      puts 'Неверно указан типа поезда'
-      create_new_train
+    begin
+      puts 'Введите номер поезда'
+      train_number = gets.chomp
+      puts 'Укажите необходимый типа поезда: пассажирский/грузовой'
+      train_type = gets.chomp.downcase
+      if train_type == 'пассажирский'
+        @trains_list << CargoTrain.new(train_number)
+        puts "Создан #{train_type} поезд с номером #{train_number}"
+      elsif train_type == 'грузовой'
+        @trains_list << PassengerTrain.new(train_number)
+        puts "Создан #{train_type} поезд с номером #{train_number}"
+      end
+    rescue RuntimeError => e
+      e.message
+      retry
     end
     main
   end
