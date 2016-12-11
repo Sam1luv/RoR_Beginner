@@ -34,15 +34,15 @@ class Route
 
   def add_way_station_validate!
     raise 'Промежуточная станция не указана' if way_station.nil?
-    raise 'Введенные данные не могут быть промежуточной станцией' if way_station.class != Station
+    raise 'Введенные данные не могут быть промежуточной станцией' if way_station.to_a? Station
     true
   end
 
   def validate!
     raise 'Начальная станция не указана' if @begin_station.nil?
     raise 'Конечная станция не указана' if @end_station.nil?
-    raise 'Введенные данные не могут быть начальной станцией' if @begin_station.class != Station
-    raise 'Введенные данные не могут быть конечной станцией' if @end_station.class != Station
+    raise 'Введенные данные не могут быть начальной станцией' if @begin_station.to_a? Station
+    raise 'Введенные данные не могут быть конечной станцией' if @end_station.to_a? Station
     true
   end
 end
