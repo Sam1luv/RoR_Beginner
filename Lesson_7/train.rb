@@ -22,6 +22,12 @@ class Train
     false
   end
 
+  def carriage_list_iter
+    yield if block_given?
+  end
+
+  carriage_list_iter @carriage_list.each { |carriage| carriage }
+
   def self.find(train_number)
     @train_list[train_number]
   end
