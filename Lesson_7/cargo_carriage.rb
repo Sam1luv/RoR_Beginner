@@ -15,6 +15,7 @@ class CargoCarriage < Carriage
   def show_empty_amount
     @empty_amount
   end
+
   protected
 
   attr_writer :empty_amount, :occupied_amount
