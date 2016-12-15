@@ -18,11 +18,9 @@ class Station
     false
   end
 
-  def train_list_iter
-    yield if block_given?
+  def train_list
+    @train_list.each { |train| yield(train) }
   end
-
-  train_list_iter @train_list.each { |train| train }
 
   def self.all
     @@station_list
