@@ -3,20 +3,17 @@ class PassengerCarriage < Carriage
 
   def initialize(total_places)
     @type = :passenger
+    validate!
     @total_places = total_places
     @empty_places = total_places
     @occupied_places = 0
   end
 
-  def show_occupied_places
-    @occupied_places
-  end
-
-  def show_empty_places
-    @empty_places
-  end
-
   protected
+
+  def validate!
+    raise 'Неверно указано количество свободных мест' if total_places.nil? && total_places < 0
+  end
 
   attr_writer :occupied_places, :empty_places
 
