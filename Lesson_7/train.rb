@@ -22,7 +22,7 @@ class Train
     false
   end
 
-  def carriage_list
+  def block_carriage_list
     @carriage_list.each { |carriage| yield(carriage) }
   end
 
@@ -81,7 +81,7 @@ class Train
 
   def validate!
     raise 'Номер поезда не задан' if train_number.nil?
-    raise 'Номер поезда должен быть не меньше 5 символов' if train_number.length < 5
+    raise 'Неверно указан номер поезда' if train_number.length < 5
     raise 'Неверно указан номер поезда' if train_number !~ TRAIN_NUMBER_FORMAT
     raise 'Неверено указана скорость' if speed < 0
     true

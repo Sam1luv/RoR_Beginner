@@ -18,7 +18,7 @@ class Station
     false
   end
 
-  def train_list
+  def block_train_list
     @train_list.each { |train| yield(train) }
   end
 

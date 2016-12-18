@@ -12,7 +12,7 @@ class PassengerCarriage < Carriage
   protected
 
   def validate!
-    raise 'Неверно указано количество свободных мест' if total_places.nil? && total_places < 0
+    raise 'Ошибка количества мест' if total_places.nil? && total_places < 0
   end
 
   attr_writer :occupied_places, :empty_places
