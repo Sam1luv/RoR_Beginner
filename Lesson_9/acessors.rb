@@ -18,11 +18,8 @@ module Acessors
       attr_name = "@#{name}".to_sym
       define_method(name) { instance_variable_get(attr_name) }
       define_method("@#{name}=".to_sym) do |value|
-        if value.is_a?(claass)
-          instance_variable_set(attr_name)
-        else
-          raise 'Wrong attribute class'
-        end
+        return instance_variable_set(attr_name) if value.is_a?(claass)
+        raise 'Wrong attribute class'
       end
     end
   end
