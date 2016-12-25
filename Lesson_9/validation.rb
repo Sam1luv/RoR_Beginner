@@ -3,27 +3,24 @@ module Validation
     reciever.extend ClassMethods
     reciever.send :include, InstanceMethods
   end
-  
+
   attr_accessor :validation
 
-  
   module ClassMethods
     def validate(name, type, *args)
-      validation || = []
-      validation << {attr_name: name, validate_type: type, args: args}  
+      validation ||= []
+      validation << { attr_name: name, validate_type: type, args: args }
     end
   end
 
   module InstanceMethods
     def validate!
       self.class.validation.each do |params|
-
-      end 
+      end
     end
 
-    def valid?
-    end
-    
+    def valid?; end
+
     protected
 
     def presence(name)
@@ -35,7 +32,7 @@ module Validation
     end
 
     def type(name, attr_cls)
-      raise "Wrong attribute claas" unless instance_variable_get("@#{name}").is_a?(attr_cls)
-    end 
+      raise 'Wrong attribute claas' unless instance_variable_get("@#{name}").is_a?(attr_cls)
+    end
   end
 end
