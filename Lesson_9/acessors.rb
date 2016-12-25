@@ -1,4 +1,9 @@
 module Acessors
+  def self.included(receiver)
+    receiver.extend         ClassMethods
+    receiver.send :include, InstanceMethods
+  end
+
   module ClassMethods
     def attr_acessor_with_history(*names)
       names.each do |name|
@@ -26,10 +31,5 @@ module Acessors
 
   module InstanceMethods
     # Empty Instance Methods
-  end
-
-  def self.included(receiver)
-    receiver.extend         ClassMethods
-    receiver.send :include, InstanceMethods
   end
 end
