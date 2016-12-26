@@ -1,9 +1,14 @@
 class Train
-  # include Manufacturer
+  include Manufacturer
+  include Validation
+
   attr_accessor :route, :carriage_list, :train_number
   attr_reader :speed, :type
 
   TRAIN_NUMBER_FORMAT = /^[a-zа-я0-9]{3}-?[a-zа-я0-9]{2}$/i
+  
+  validate :train_number :presence
+  validate :train_number :format TRAIN_NUMBER_FORMAT
 
   @train_list ||= {}
   def initialize(train_number, speed = 0)
@@ -15,12 +20,6 @@ class Train
     train_list = self.class.instance_variable_get(:@train_list)
     validate!
     train_list[train_number] = self
-  end
-
-  def validate?
-    validate!
-  rescue
-    false
   end
 
   def block_carriage_list
@@ -80,11 +79,4 @@ class Train
 
   attr_writer :speed
 
-  def validate!
-    raise 'Номер поезда не задан' if train_number.nil?
-    raise 'Неверно указан номер поезда' if train_number.length < 5
-    raise 'Неверно указан номер поезда' if train_number !~ TRAIN_NUMBER_FORMAT
-    raise 'Неверено указана скорость' if speed < 0
-    true
-  end
 end

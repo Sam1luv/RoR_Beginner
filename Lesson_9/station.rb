@@ -1,21 +1,21 @@
 class Station
+  include Validation
   attr_writer :name
   attr_accessor :train_list
 
   STATION_NAME_FORMAT = /^[a-zа-я0-9]$/i
+
+  validate :name :presence
+  validate :name :format STATION_NAME_FORMAT
+  validate :type :type Station
 
   @station_list = []
   def initialize(name)
     @name = name
     @train_list = []
     validate!
+    @type = self
     @station_list << self
-  end
-
-  def validate?
-    validate!
-  rescue
-    false
   end
 
   def block_train_list
@@ -45,9 +45,4 @@ class Station
 
   protected
 
-  def validate!
-    raise 'Название станции не указано' if name.nil?
-    raise 'Неверный формат названия станции' if name !~ STATION_NAME_FORMAT
-    true
-  end
 end

@@ -4,9 +4,9 @@ module Validation
     reciever.send :include, InstanceMethods
   end
 
-  attr_accessor :validation
-
   module ClassMethods
+    attr_accessor :validation
+
     def validate(name, type, *args)
       validation ||= []
       validation << { attr_name: name, validate_type: type, args: args }
@@ -15,11 +15,16 @@ module Validation
 
   module InstanceMethods
     def validate!
-      self.class.validation.each do |params|
+      self.class.validation.each do |validation|
+        send validation[:attr_name], validation[:validate_type], validation[:args]
       end
     end
 
-    def valid?; end
+    def valid?
+      validate!
+    rescue
+      false
+    end
 
     protected
 
