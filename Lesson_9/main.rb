@@ -1,3 +1,5 @@
+require_relative 'manufacturer'
+require_relative 'validation'
 require_relative 'train'
 require_relative 'carriage'
 require_relative 'passenger_train'

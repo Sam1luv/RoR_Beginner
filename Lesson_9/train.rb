@@ -7,8 +7,8 @@ class Train
 
   TRAIN_NUMBER_FORMAT = /^[a-zа-я0-9]{3}-?[a-zа-я0-9]{2}$/i
   
-  validate :train_number :presence
-  validate :train_number :format TRAIN_NUMBER_FORMAT
+  validate :train_number, :presence
+  validate :train_number, :format, TRAIN_NUMBER_FORMAT
 
   @train_list ||= {}
   def initialize(train_number, speed = 0)
@@ -27,7 +27,7 @@ class Train
   end
 
   def self.find(train_number)
-    @@train_list[train_number]
+    train_list[train_number]
   end
 
   def break

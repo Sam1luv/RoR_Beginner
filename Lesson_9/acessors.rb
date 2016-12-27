@@ -11,7 +11,7 @@ module Acessors
         var_history = "@#{name}_history".to_sym
         define_method(name) { instance_variable_get(var_name) }
         define_method("#{name}=") do |value|
-          instance_variable_set(var_history, []) unless instance_variable_defined?(var_name)
+          instance_variable_set(var_history, []) unless instance_variable_defined?(var_history)
           instance_variable_set(var_name, value)
           instance_variable_get(var_history) << instance_variable_get(var_name)
         end

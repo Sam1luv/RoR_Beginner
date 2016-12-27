@@ -5,16 +5,16 @@ class Station
 
   STATION_NAME_FORMAT = /^[a-zа-я0-9]$/i
 
-  validate :name :presence
-  validate :name :format STATION_NAME_FORMAT
-  validate :type :type Station
+  validate :name, :presence
+  validate :name, :format, STATION_NAME_FORMAT
+  validate :type, :type, Station
 
   @station_list = []
   def initialize(name)
     @name = name
     @train_list = []
-    validate!
     @type = self
+    validate!
     @station_list << self
   end
 
@@ -42,7 +42,5 @@ class Station
   def send_train(train)
     @train_list.delete(train) if @train_list.include?(train)
   end
-
-  protected
 
 end

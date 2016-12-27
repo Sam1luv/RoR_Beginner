@@ -16,8 +16,9 @@ module Validation
   module InstanceMethods
     def validate!
       self.class.validation.each do |validation|
-        send validation[:attr_name], validation[:validate_type], validation[:args]
+        send validation[:name], validation[:type], validation[:args]
       end
+      true
     end
 
     def valid?
