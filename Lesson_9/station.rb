@@ -3,19 +3,20 @@ class Station
   attr_writer :name
   attr_accessor :train_list
 
-  STATION_NAME_FORMAT = /^[a-zа-я0-9]$/i
+  STATION_NAME_FORMAT = /^[a-zа-я0-9]+$/i
 
   validate :name, :presence
   validate :name, :format, STATION_NAME_FORMAT
   validate :type, :type, Station
 
-  @station_list = []
+  @station_list ||= []
   def initialize(name)
     @name = name
     @train_list = []
     @type = self
+    station_list = self.class.instance_variable_get(:@station_list )
     validate!
-    @station_list << self
+    station_list << self
   end
 
   def block_train_list

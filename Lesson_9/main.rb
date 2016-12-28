@@ -29,7 +29,7 @@ class TrainProgram
     puts '9. Занять места или заполнить объем в вагонах'
     puts '10. Вывести список поездов на станции'
     puts '0. Завершение работы'
-    print '---------------------------------------------------------'
+    puts '---------------------------------------------------------'
     input = gets.chomp.to_i
     loop do
       case input
@@ -68,6 +68,8 @@ class TrainProgram
       puts 'Данная станция уже есть в маршруте'
     else
       @station_list << Station.new(station_name)
+      puts "Станция #{station_name} добавлена"
+      puts '----------------------------------------'
     end
     main
   end

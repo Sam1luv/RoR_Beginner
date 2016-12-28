@@ -5,18 +5,18 @@ module Validation
   end
 
   module ClassMethods
-    attr_accessor :validation
+    attr_accessor :validations
 
     def validate(name, type, *args)
-      @validation ||= []
-      @validation << { attr_name: name, validate_type: type, args: args }
+      @validations ||= []
+      @validations << { type: type, name: name, args: args }
     end
   end
 
   module InstanceMethods
     def validate!
-      self.class.validation.each do |validation|
-        send validation[:name], validation[:type], validation[:args]
+      self.class.validations.each do |validation|
+        send validation[:type], validation[:name], validation[:args]
       end
       true
     end
@@ -29,16 +29,17 @@ module Validation
 
     protected
 
-    def presence(name)
+    def presence(name, *args)
       raise "Wrong attr - @#{name} value" if instance_variable_get("@#{name}").to_s.empty?
+      true
     end
 
-    def format(name, regexp)
-      raise "Wrong attr - @#{name} format" if instance_variable_get("@#{name}") !~ regexp
+    def format(name, args)
+      raise "Wrong attr - @#{name} format" if instance_variable_get("@#{name}") !~ args[0]
     end
 
-    def type(name, attr_cls)
-      raise 'Wrong attribute claas' unless instance_variable_get("@#{name}").is_a?(attr_cls)
+    def type(name, args)
+      raise 'Wrong attribute claas' unless instance_variable_get("@#{name}").is_a?(args[0])
     end
   end
 end
