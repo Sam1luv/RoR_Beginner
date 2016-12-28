@@ -8,8 +8,8 @@ module Validation
     attr_accessor :validation
 
     def validate(name, type, *args)
-      validation ||= []
-      validation << { attr_name: name, validate_type: type, args: args }
+      @validation ||= []
+      @validation << { attr_name: name, validate_type: type, args: args }
     end
   end
 
